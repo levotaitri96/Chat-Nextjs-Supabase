@@ -31,12 +31,26 @@ export default function ListMessages() {
 				async (payload) => {
 					if (!optimisticIds.includes(payload.new.id)) {
 						// Sửa từ "users" thành "profiles" hoặc không cần query user
-						const newMessage = {
-							...payload.new,
-							// Tạm thời không query user info
-							users: null,
-						};
-						addMessage(newMessage as Imessage);
+						// const newMessage = {
+						// 	...payload.new,
+						// 	// Tạm thời không query user info
+						// 	users: null,
+						// };
+						// addMessage(newMessage as Imessage);
+						const { data: user } = await supabase
+							.from("users")
+							.select("display_name, avatar_url")
+							.eq("id", payload.new.send_by)
+							.single();
+
+						if (user) {
+							const newMessage = {
+								...payload.new,
+								users: user,
+							};
+
+							addMessage(newMessage as Imessage);
+						}
 					}
 					const scrollContainer = scrollRef.current;
 					if (

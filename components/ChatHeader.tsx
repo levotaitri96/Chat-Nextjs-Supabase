@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import ChatPresence from "./ChatPresence";
+import ChatPresence, { untrackPresence } from "./ChatPresence";
 
 export default function ChatHeader({ user }: { user: User | undefined }) {
 	const router = useRouter();
@@ -20,6 +20,7 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 	};
 
 	const handleLogout = async () => {
+		untrackPresence(); // untrack trước khi logout
 		const supabase = supabaseBrowser();
 		await supabase.auth.signOut();
 		router.refresh();
@@ -29,7 +30,7 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 		<div className="h-20">
 			<div className="p-5 border-b flex items-center justify-between h-full">
 				<div>
-					<h1 className="text-xl font-bold">ChatWithTri(Lê Võ Tài Trí)</h1>
+					<h1 className="text-xl font-bold">ChatWithTri (Lê Võ Tài Trí)</h1>
 					<ChatPresence />
 				</div>
 				{user ? (
