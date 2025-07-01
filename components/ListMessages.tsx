@@ -1,12 +1,11 @@
 "use client";
 import { Imessage, useMessage } from "@/lib/store/messages";
+import { supabaseBrowser } from "@/lib/supabase/browser";
+import { ArrowDown } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import LoadMoreMessages from "./LoadMoreMessages";
 import Message from "./Message";
 import { DeleteAlert, EditAlert } from "./MessasgeActions";
-import { supabaseBrowser } from "@/lib/supabase/browser";
-import { toast } from "sonner";
-import { ArrowDown } from "lucide-react";
-import LoadMoreMessages from "./LoadMoreMessages";
 
 export default function ListMessages() {
 	const scrollRef = useRef() as React.MutableRefObject<HTMLDivElement>;

@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@/lib/store/user";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 let channelRefGlobal: any = null;
 
@@ -37,10 +37,9 @@ export default function ChatPresence() {
 		const updateOnlineCount = () => {
 			const state = channel.presenceState();
 			const userIds: string[] = [];
-
 			for (const id in state) {
 				const entries = state[id];
-				for (const entry of entries) {
+				for (const entry of entries as any) {
 					userIds.push(entry.user_id);
 				}
 			}
