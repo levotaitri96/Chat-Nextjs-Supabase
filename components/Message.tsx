@@ -44,7 +44,7 @@ export default function Message({ message }: { message: Imessage }) {
 						<MessageMenu message={message} />
 					)}
 				</div>
-				<p className="text-gray-300">{message.text}</p>
+				<p className="text-foreground">{message.text}</p>
 			</div>
 		</div>
 	);
