@@ -12,7 +12,8 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 	const handleLoginWithGithub = () => {
 		const supabase = supabaseBrowser();
 		supabase.auth.signInWithOAuth({
-			provider: "github",
+			provider: "google",
+			// provider: "github",
 			options: {
 				redirectTo: location.origin + "/auth/callback",
 			},
@@ -30,7 +31,7 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 		<div className="h-20">
 			<div className="p-5 border-b flex items-center justify-between h-full">
 				<div>
-					<h1 className="text-xl font-bold">ChatWithTri (Lê Võ Tài Trí)</h1>
+					<h1 className="text-xl font-bold">Chat With Lê Võ Tài Trí</h1>
 					<ChatPresence />
 				</div>
 				{user ? (
