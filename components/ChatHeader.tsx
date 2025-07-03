@@ -24,7 +24,7 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 			provider: "google",
 			// provider: "github",
 			options: {
-				redirectTo: location.origin + "/auth/callback",
+				redirectTo: location.origin + "/auth/v1/callback",
 			},
 		});
 	};
