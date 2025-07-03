@@ -23,9 +23,9 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 		supabase.auth.signInWithOAuth({
 			provider: "google",
 			// provider: "github",
-			options: {
-				redirectTo: location.origin + "/auth/v1/callback",
-			},
+			// options: {
+			// 	redirectTo: location.origin + "/auth/v1/callback",
+			// },
 		});
 	};
 
