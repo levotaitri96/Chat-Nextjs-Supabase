@@ -9,15 +9,15 @@ import ChatAbout from "@/components/ChatAbout";
 
 export default async function Page() {
 	const supabase = supabaseServer();
-	const { data } = await supabase.auth.getSession();
+	const { data } = await supabase.auth.getUser();
 
 	return (
 		<>
 			<div className="max-w-3xl mx-auto md:py-10 h-screen">
 				<div className=" h-full border rounded-md flex flex-col relative">
-					<ChatHeader user={data.session?.user} />
+					<ChatHeader user={data.user || undefined} />
 
-					{data.session?.user ? (
+					{data?.user ? (
 						<>
 							<ChatMessages />
 							<ChatInput />
@@ -27,7 +27,7 @@ export default async function Page() {
 					)}
 				</div>
 			</div>
-			<InitUser user={data.session?.user} />
+			<InitUser user={data?.user || undefined} />
 		</>
 	);
 }
