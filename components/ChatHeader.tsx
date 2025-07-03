@@ -21,11 +21,11 @@ export default function ChatHeader({ user }: { user: User | undefined }) {
 	const handleLoginWithGoogle = () => {
 		const supabase = supabaseBrowser();
 		supabase.auth.signInWithOAuth({
-			provider: "google",
-			// provider: "github",
-			// options: {
-			// 	redirectTo: location.origin + "/auth/v1/callback",
-			// },
+			// provider: "google",
+			provider: "github",
+			options: {
+				redirectTo: location.origin + "/auth/callback",
+			},
 		});
 	};
 
